@@ -1,0 +1,22 @@
+AddDefaultCharset utf-8
+
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>
+
+Options -Multiviews
+Options +FollowSymLinks
+
+IndexIgnore */*
+RewriteEngine on
+
+# Make the backend accessible via url: http://site.com/hive.
+RewriteRule ^hive hive.php
+
+# If a directory or a file exists, use it directly.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Otherwise forward it to index.php.
+RewriteRule . index.php
